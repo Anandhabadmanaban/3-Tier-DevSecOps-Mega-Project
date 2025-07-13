@@ -40,7 +40,7 @@ pipeline {
                 dir('api') {
                      withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'ECR_442042548826', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
                        sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 442042548826.dkr.ecr.us-east-1.amazonaws.com'
-                   sh 'docker build -t anandhabadmanaban/3_tier_app_backend:${BUILD_NUMBER} .'
+                   sh "docker build -t anandhabadmanaban/3_tier_app_backend:${BUILD_NUMBER} ."
                   sh 'docker tag anandhabadmanaban/3_tier_app_backend:${BUILD_NUMBER} 442042548826.dkr.ecr.us-east-1.amazonaws.com/anandhabadmanaban/3_tier_app_backend:${BUILD_NUMBER}'
                   sh 'docker push 442042548826.dkr.ecr.us-east-1.amazonaws.com/anandhabadmanaban/3_tier_app_backend:${BUILD_NUMBER}'
                      }
