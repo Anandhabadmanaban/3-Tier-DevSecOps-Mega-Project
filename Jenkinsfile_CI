@@ -1,10 +1,7 @@
 pipeline {
     agent any
     
-    tools {
-        nodejs 'nodejs23'
-    }
-
+    
     environment {
         SCANNER_HOME = tool 'sonar-scanner'
     }
@@ -23,7 +20,7 @@ pipeline {
      dir('client') {
 
             withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'ECR_442042548826', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
-                aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 442042548826.dkr.ecr.us-east-1.amazonaws.com
+                sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 442042548826.dkr.ecr.us-east-1.amazonaws.com'
      sh 'docker build -t 442042548826.dkr.ecr.us-east-1.amazonaws.com/anandhabadmanaban/3_tier_app_frontend:{ BUILD_COMMIT } .'
      sh 'docker push 442042548826.dkr.ecr.us-east-1.amazonaws.com/anandhabadmanaban/3_tier_app_frontend:{ BUILD_COMMIT }'
 }
@@ -42,7 +39,7 @@ pipeline {
             steps {
                 dir('api') {
                      withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'ECR_442042548826', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
-                        aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 442042548826.dkr.ecr.us-east-1.amazonaws.com
+                       sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 442042548826.dkr.ecr.us-east-1.amazonaws.com'
                    sh 'docker build -t 442042548826.dkr.ecr.us-east-1.amazonaws.com/anandhabadmanaban/3_tier_app_backend:{ BUILD_COMMIT } .'
                    sh 'docker push 442042548826.dkr.ecr.us-east-1.amazonaws.com/anandhabadmanaban/3_tier_app_backend:{ BUILD_COMMIT }'
                      }
