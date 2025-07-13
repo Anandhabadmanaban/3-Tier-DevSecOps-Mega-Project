@@ -4,12 +4,7 @@ pipeline {
     
     
     stages {
-        /*
-        stage('Git Checkout') {
-            steps {
-                git branch: 'dev', url: 'https://github.com/jaiswaladi246/3-Tier-DevSecOps-Mega-Project.git'
-            }
-        }*/
+       
         
         stage('Frontend Compilation') {
             steps {
@@ -75,6 +70,8 @@ pipeline {
                 sh 'trivy fs --format table -o fs-report.html .'
             }
         }*/
+
+        
     }
 }
 
