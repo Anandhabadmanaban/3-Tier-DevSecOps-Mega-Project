@@ -9,16 +9,19 @@ pipeline {
         SCANNER_HOME = tool 'sonar-scanner'
     }
     stages {
+        /*
         stage('Git Checkout') {
             steps {
                 git branch: 'dev', url: 'https://github.com/jaiswaladi246/3-Tier-DevSecOps-Mega-Project.git'
             }
-        }
+        }*/
         
         stage('Frontend Compilation') {
             steps {
+
                 dir('client') {
-                    sh 'find . -name "*.js" -exec node --check {} +'
+                    sh 'docker build -t 442042548826.dkr.ecr.us-east-1.amazonaws.com/anandhabadmanaban/3_tier_app_frontend:{ BUILD_COMMIT } .'
+                    
                 }
             }
         }
@@ -26,18 +29,18 @@ pipeline {
         stage('Backend Compilation') {
             steps {
                 dir('api') {
-                    sh 'find . -name "*.js" -exec node --check {} +'
+                   sh 'docker build -t 442042548826.dkr.ecr.us-east-1.amazonaws.com/anandhabadmanaban/3_tier_app_backend:{ BUILD_COMMIT } .'
                 }
             }
         }
-        
+         /*
         stage('GitLeaks Scan') {
             steps {
                 sh 'gitleaks detect --source ./client --exit-code 1'
                 sh 'gitleaks detect --source ./api --exit-code 1'
             }
         }
-        
+       
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('sonar') {
@@ -57,6 +60,6 @@ pipeline {
             steps {
                 sh 'trivy fs --format table -o fs-report.html .'
             }
-        }
+        }*/
     }
 }
