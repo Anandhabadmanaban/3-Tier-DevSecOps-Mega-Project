@@ -19,8 +19,8 @@ pipeline {
 
             withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'ECR_442042548826', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
                 sh 'echo ======================'
-                sh ' aws sts get-caller-identity'
-                sh 'docker login -u AWS -p $(aws ecr get-login-password --region us-east-1) 442042548826.dkr.ecr.us-east-1.amazonaws.com'
+                sh ' $(which aws) sts get-caller-identity'
+                sh 'docker login -u AWS -p $($(which aws) ecr get-login-password --region us-east-1) 442042548826.dkr.ecr.us-east-1.amazonaws.com'
      sh 'docker build -t 442042548826.dkr.ecr.us-east-1.amazonaws.com/anandhabadmanaban/3_tier_app_frontend:{ BUILD_COMMIT } .'
      sh 'docker push 442042548826.dkr.ecr.us-east-1.amazonaws.com/anandhabadmanaban/3_tier_app_frontend:{ BUILD_COMMIT }'
 }
