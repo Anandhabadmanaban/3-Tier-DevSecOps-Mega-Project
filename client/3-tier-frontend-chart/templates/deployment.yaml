@@ -14,7 +14,8 @@ spec:
       labels:
         {{- include "3-tier-frontend-chart.selectorLabels" . | nindent 8 }}
     spec:
-
+      imagePullSecrets:
+        - name: ecr-pull-secret
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
