@@ -14,9 +14,7 @@ spec:
       annotations: 
       labels:
         {{- include "3-tier-backend-chart.selectorLabels" . | nindent 8 }}
-    spec:
-      imagePullSecrets:
-      - name: ecr-registry-secret 
+    spec:  
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
