@@ -46,7 +46,7 @@ pipeline {
  stage('update image in values file') {
             steps {
                 script {
-                   if( currentBuild.result == 'SUCCESS' ) {
+                
                     echo 'Build was successful, proceeding to update values file.'
                     
                    dir('./api/3-tier-backend-chart') {
@@ -63,7 +63,7 @@ pipeline {
                     writeYaml file: 'values.yaml', data: valuesFile
                 }
                  }
-                }
+                
                 
             }
 
