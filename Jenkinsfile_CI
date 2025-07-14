@@ -45,7 +45,8 @@ pipeline {
 
  stage('update image in values file') {
             steps {
-                if( build_successful() ) {
+                script {
+                   if( currentBuild.result == 'SUCCESS' ) {
                     echo 'Build was successful, proceeding to update values file.'
                     
                    dir('./api/3-tier-backend-chart') {
@@ -53,7 +54,7 @@ pipeline {
                     def valuesFile = readYaml file: 'values.yaml'
                     valuesFile.image.tag = "${BUILD_NUMBER}"
                     writeYaml file: 'values.yaml', data: valuesFile
-                }
+                }}
 
                 dir('./client/3-tier-frontend-chart') {
                 script {
@@ -61,13 +62,12 @@ pipeline {
                     valuesFile.image.tag = "${BUILD_NUMBER}"
                     writeYaml file: 'values.yaml', data: valuesFile
                 }
-                else {
-                    error 'Build failed, not updating values file.'
+                 }
                 }
-
-
+                
             }
-            }
+
+                }}
 
          /*
         stage('GitLeaks Scan') {
@@ -101,6 +101,6 @@ pipeline {
         
     }
 }
-
+ 
  
 
