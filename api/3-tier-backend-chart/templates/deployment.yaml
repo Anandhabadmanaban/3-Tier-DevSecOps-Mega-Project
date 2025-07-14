@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}
+  name: Deployment-{{ .Release.Name }}
   labels:
     {{- include "3-tier-backend-chart.labels" . | nindent 4 }}
 spec:
