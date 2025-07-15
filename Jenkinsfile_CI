@@ -43,7 +43,7 @@ pipeline {
             }
         }
 
- stage('update image in values file') {
+ /*stage('update image in values file') {
             steps {
                 script {
                 
@@ -51,14 +51,14 @@ pipeline {
                     
                    dir('./api/3-tier-backend-chart') {
                 script {
-                    def valuesFile = readYaml file: 'values.yaml'
+                    def valuesFile = readYaml file: './values.yaml'
                     valuesFile.image.tag = "${BUILD_NUMBER}"
                     writeYaml file: 'values.yaml', data: valuesFile
                 }}
 
                 dir('./client/3-tier-frontend-chart') {
                 script {
-                    def valuesFile = readYaml file: 'values.yaml'
+                    def valuesFile = readYaml file: './values.yaml'
                     valuesFile.image.tag = "${BUILD_NUMBER}"
                     writeYaml file: 'values.yaml', data: valuesFile
                 }
@@ -67,7 +67,7 @@ pipeline {
                 
             }
 
-                }}
+                }} */
 
          /*
         stage('GitLeaks Scan') {
