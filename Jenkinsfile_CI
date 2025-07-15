@@ -62,8 +62,7 @@ pipeline {
                     // Configure git
                     withCredentials([usernamePassword(credentialsId: 'gitcred', usernameVariable: 'GIT_USER', passwordVariable: 'GIT_TOKEN')]) {
                     sh """
-                        git config --global user.email "anandha.srivi@gmail.com"
-                        git config --global user.name "anandha.srivi@gmail.com"
+
                         git remote set-url origin https://${GIT_USER}:${GIT_TOKEN}@github.com/Anandhabadmanaban/3-Tier-DevSecOps-Mega-Project.git
                         git add ./api/3-tier-backend-chart/values.yaml ./client/3-tier-frontend-chart/values.yaml
                         git commit -m "Update image tag to ${BUILD_NUMBER} [ci skip]" || echo "No changes to commit"
