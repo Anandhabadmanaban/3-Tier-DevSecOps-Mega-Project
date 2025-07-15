@@ -54,7 +54,7 @@ pipeline {
                     // Configure git
                     sh """
                         git config user.email "anandha.srivi@gmail.com"
-                        git config user.name "anandhabadmanaban"
+                        git config user.name "anandha.srivi@gmail.com"
                         git add ./api/3-tier-backend-chart/values.yaml ./client/3-tier-frontend-chart/values.yaml
                         git commit -m "Update image tag to ${BUILD_NUMBER} [ci skip]" || echo "No changes to commit"
                         git push origin HEAD:${BRANCH_NAME} || echo "No changes to push"
