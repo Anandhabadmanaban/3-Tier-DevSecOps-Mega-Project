@@ -10,7 +10,15 @@ const db = require('./models/db'); // MySQL connection
 const app = express();
 
 // Middlewares
-app.use(cors());
+const corsOptions = {
+  origin: [ 'http://localhost:5000','http://localhost:3000','http://localhost:80'], // Allow specific origins
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true, // If you're sending cookies/auth headers
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Custom-Header']
+};
+app.use(cors(corsOptions));
+
+
 app.use(bodyParser.json());
 
 // Routes
@@ -60,6 +68,11 @@ const initAdminUser = async () => {
     }
   });
 };
+
+
+
+
+
 
 // Start server
 const PORT = process.env.PORT || 5000;
