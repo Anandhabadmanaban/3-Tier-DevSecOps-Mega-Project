@@ -10,13 +10,8 @@ const db = require('./models/db'); // MySQL connection
 const app = express();
 
 // Middlewares
-const corsOptions = {
-  origin: [ 'http://192.168.29.69:3000','http://localhost:3000','http://localhost:80'], // Allow specific origins
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true, // If you're sending cookies/auth headers
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-Custom-Header']
-};
-app.use(cors(corsOptions));
+
+app.use(cors());
 
 
 app.use(bodyParser.json());
