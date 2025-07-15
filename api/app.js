@@ -11,7 +11,7 @@ const app = express();
 
 // Middlewares
 const corsOptions = {
-  origin: [ 'http://localhost:5000','http://localhost:3000','http://localhost:80'], // Allow specific origins
+  origin: [ 'http://192.168.29.69:3000','http://localhost:3000','http://localhost:80'], // Allow specific origins
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true, // If you're sending cookies/auth headers
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Custom-Header']
