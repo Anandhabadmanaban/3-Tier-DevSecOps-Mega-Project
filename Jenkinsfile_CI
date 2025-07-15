@@ -4,7 +4,7 @@ pipeline {
 
         BRANCH_NAME = "${env.BRANCH_NAME}"
         GIT_HUB_URL="https://github.com/Anandhabadmanaban/3-Tier-DevSecOps-Mega-Project.git"
-        IMAGE_REPO_FRONTEND = "u/${REPO_USERNAME}/3_tier_app_frontend"
+        IMAGE_REPO_FRONTEND = "${ECR_URL}/${REPO_USERNAME}/3_tier_app_frontend"
         IMAGE_REPO_BACKEND = "${ECR_URL}/${REPO_USERNAME}/3_tier_app_backend"
         ECR_URL = "442042548826.dkr.ecr.us-east-1.amazonaws.com"
         REPO_USERNAME = "anandhabadmanaban"
