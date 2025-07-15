@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    env{
+    environment {
 
         BRANCH_NAME = "${env.BRANCH_NAME}"
         GIT_HUB_URL="https://github.com/Anandhabadmanaban/3-Tier-DevSecOps-Mega-Project.git"
